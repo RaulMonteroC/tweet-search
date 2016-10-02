@@ -1,11 +1,18 @@
-﻿using System;
+﻿using System.Net.Http;
+using Newtonsoft.Json;
+
 namespace Sweet
 {
-    public class EndPointParser
+    public static class EndPointParser
     {
-        public T Parse<T> (string url)
+        public static T Parse<T> (string url)
         {
-            return default (T);
+            var httpClient = new HttpClient ();
+            var responseString = httpClient.GetStringAsync (url).Result;
+
+            var parsedObject = JsonConvert.DeserializeObject<T> (responseString);
+
+            return parsedObject;
         }
     }
 }

@@ -11,11 +11,12 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250" />
                 <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>			
-			<Entry x:Name="searchText" Placeholder="Tweet search terms" Grid.Row="0" Grid.Column="0"></Entry>
-			<Button x:Name="searchButton" Text="Search" Grid.Row="0" Grid.Column="1"></Button>
+            </Grid.ColumnDefinitions>	
+				
+			<Entry x:Name="searchText" Text="{Binding SearchTerm}" Placeholder="Tweet search terms" Grid.Row="0" Grid.Column="0"></Entry>
+			<Button x:Name="searchButton" Command="{Binding SearchCommand}" Text="Search" Grid.Row="0" Grid.Column="1"></Button>
 		</Grid>			
-		<ListView x:Name="TweetList">
+		<ListView ItemsSource="{Binding Tweets}" x:Name="TweetList">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<TextCell Text="{Binding Text}" />
